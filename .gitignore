@@ -1,2 +1,4 @@
 virtual/
 .env
+insta/__pycache__/
+.vscode/
