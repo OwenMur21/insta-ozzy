@@ -1,30 +1,45 @@
-
-
-<nav class="navbar navbar-default navbar-fixed-top" style="background-color:#FFFFFF; border:solid #cccccc 1px; border-radius:1px;">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-       <!-- <a class="navbar-brand" href="/"><img src="../static/photo/pic.png" style="width:30px"></a> -->
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color:#fafafa; border:solid #cccccc 1px; border-radius:1px;height:30px;">
+  <div class="container">
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav" style="font-weight:bolder;">
-      <li><a href="/"><img src="/static/img/logo.png" style="width:40px"> | Instagram</a></li>
+      <ul class="col-sm-4 col-md-4 col-xs-4 col-lg-4 nav navbar-nav">
+        <li><a href="/"><img src="/static/img/logo.png" style="width:40px"></a></li>
+        <li class="line"><a href="/"></a></li>
+        <li><a href="/" class="insta">Instagram</a></li>
       </ul>
-      <center>
-      <form class="navbar-form" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search Profile" name="image">
-        </div>
-        <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-      </form>
-      </center>
+        <form class="col-sm-4 col-md-4 col-xs-4 col-lg-4 navbar-form" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="&#xF002;  Search" name="image" style="font-family:FontAwesome;text-align:center;">
+          </div>
+        </form>
+     <ul class="col-sm-3 col-md-3 col-xs-4 col-lg-4 nav navbar-nav" style="float:right;">
+        <li><a href="/"><img src="/static/img/explore.png" style="width:30px"></a></li>
+        <li><a href="/"><img src="/static/img/heart.png" style="width:30px"></a></li>
+        <li><a href="/"><img src="/static/img/pro.png" style="width:30px"></a></li>
+      </ul>
     </div>
   </div>
 </nav>
+
+
+<style>
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+  .line {
+    height: 35px;
+    width: 2px;
+    background-color: black;
+    margin-top: 10px;
+  }
+
+  .insta {
+    color: black !important;
+    font-family: billabong;
+    font-size: 30px;
+  }
+
+  @font-face {
+    font-family: billabong;
+    src: url('/static/fonts/Billabong.ttf');
+    font-weight: bold;
+  }
+</style>
