@@ -4,3 +4,4 @@ insta/__pycache__/
 .vscode/
 pix/__pycache__/
 pix/migrations/__pycache__/
+pix/migrations/
