@@ -2,15 +2,13 @@
 {% load bootstrap3 %}
 
 {% block content %}
-<div class="container">
-    <div class="row sign-up top-margin">
-        <div class="col-md-4">
+
+        <div class="col-md-2 col-xs-2 col-sm-2 col-lg-2">
             {% if form.errors %}
             <p class="small">Password or Username is incorrect</p>
             {% endif %}
-            <div class="section">
-                <!-- <h1>Instagram</h1> -->
-                
+            <div class="well">
+            <h1>Instagram</h1>
                 <div class="form-section" id="login">
                     <form action="/accounts/login/" method="POST">
                         {% csrf_token %}
@@ -21,13 +19,10 @@
                         <input type="hidden" name="next" value="/">
                     </form>
                 </div>
-
                 <p class="forgot">Forgot Password?</p>
             </div>
-            <div class="section">
+            <div class="well">
                 <p class="forgot">Don't have an account? <a href="/signup/">Sign-Up</a></p>
             </div>
         </div>
-    </div>
-</div>
 {% endblock %}
