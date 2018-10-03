@@ -4,18 +4,24 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="shortcut icon" href="/static/photo/ig.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/img/fav.png" type="image/x-icon">
     <title> Instagram </title>
 
       {% block styles %}
     {% bootstrap_css %}
+ 
+
+
   {% endblock %}
 
 </head>
 
 <body>
-    {% include "navbar.html" %}
+      {% include "navbar.html" %}
+    <br>
+    <br>
     {% block content %}
+  
 
 
     {% endblock %}
