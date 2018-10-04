@@ -1,0 +1,50 @@
+.well{
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: #ffffff;
+    width: 350px;
+
+}
+
+#well2{
+    position: absolute;
+    left: 50%;
+    top: 52%;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center
+}
+
+.insta{
+    font-family: billabong;
+    font-size : 45px;
+    text-align: center
+ 
+}
+  @font-face {
+    font-family: billabong;
+    src: url('/static/fonts/Billabong.ttf');
+    font-weight: bold;
+  }
+  .btn-md{
+      padding-left: 60px;
+      padding-right: 60px;
+  }
+
+  .app{
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translateX(-50%) translateY(-50%);
+
+  }
+  .download{
+    position: absolute;
+    left: 50%;
+    top: 65%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  img{
+      max-width: 170px;;
+  }
