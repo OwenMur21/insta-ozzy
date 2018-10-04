@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+import datetime as dt
 from django.db import models
 from tinymce.models import HTMLField
 from pyuploadcare.dj.models import ImageField
@@ -21,7 +22,18 @@ class Image(models.Model):
         Class that contains image details
         """
         post = ImageField( blank = True, manual_crop = '1920x1080')
-        
+        caption = HTMLField()
+        posted_on = models.DateTimeField(auto_now_add=True)
+        user = models.ForeignKey(User, on_delete=models.CASCADE)
+        profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+        def __str__(self):
+                return self.caption
+
+        class Meta:
+                ordering = ['posted_on']
+
+
  
 
 
