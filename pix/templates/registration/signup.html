@@ -1,9 +1,19 @@
 {%extends 'registration/base.html' %}
+{% load static %}
 
+
+{% block styles%}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
 {% block content %}
-<div class="col-md-3">
+
+<div class="phones">
+<img src="/static/img/igphone.png">
+
+</div>
 <div class="well">
-  <h2>Sign up</h2>
+  <h1 class="insta">Instagram</h1>
   <form method="post">
     {% csrf_token %}
       {% for field in form %}
@@ -18,9 +28,18 @@
         {% endfor %}
       </p>
       {% endfor %}
-
-    <button class="btn btn-info" type="submit">Sign up</button>
+    <center>
+    <button class="btn btn-info btn-md" type="submit">Sign up</button>
+    </center>
   </form>
   </div>
+   <div class="well" id="well2">
+        <p class="forgot">Have an account? <a href="/accounts/login/">Log in</a></p>
     </div>
+    <p class="app"> Get the app</p>
+    <div class="download">
+    <img src="/static/img/app1.png" class="logs">
+     <img src="/static/img/app2.png" class="logs">
+    </div>
+  
 {% endblock %}

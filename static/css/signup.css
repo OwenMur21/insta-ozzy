@@ -1,0 +1,56 @@
+.well{
+    position: absolute;
+    left: 55%;
+    top: 30%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: #ffffff;
+    width: 350px;
+}
+
+.insta{
+    font-family: billabong;
+    font-size : 45px;
+    text-align: center
+ 
+}
+  @font-face {
+    font-family: billabong;
+    src: url('/static/fonts/Billabong.ttf');
+    font-weight: bold;
+  }
+  .btn-md{
+    padding-left: 60px;
+    padding-right: 60px;
+}
+.phones{
+    position: absolute;
+    left: 35%;
+    top: 35%;
+    transform: translateX(-50%) translateY(-50%);
+}
+img{
+    max-width: 330px;
+}
+#well2{
+    position: absolute;
+    left: 55%;
+    top: 57%;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center
+}
+.app{
+    position: absolute;
+    left: 55%;
+    top: 63%;
+    transform: translateX(-50%) translateY(-50%);
+
+  }
+  .download{
+    position: absolute;
+    left: 55%;
+    top: 70%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  .logs{
+    max-width: 170px;;
+  }
