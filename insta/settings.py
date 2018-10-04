@@ -42,9 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pix.apps.PixConfig',
-    'bootstrap3'
+    'bootstrap3',
+     'tinymce',
 ]
-
+UPLOADCARE = {
+    'pub_key': 'a73a6a485ca9f025b433',
+    'secret': 'c4513b9da33810802045',
+}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
