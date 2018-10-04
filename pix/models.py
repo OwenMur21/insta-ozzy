@@ -14,6 +14,14 @@ class Profile(models.Model):
 
         def __str__(self):
                 return self.bio
+
+
+class Image(models.Model):
+        """
+        Class that contains image details
+        """
+        post = ImageField( blank = True, manual_crop = '1920x1080')
+        
  
 
 
