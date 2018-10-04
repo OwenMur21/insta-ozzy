@@ -1,26 +1,21 @@
 from django.contrib.auth.models import User
 from django.db import models
+from tinymce.models import HTMLField
+from pyuploadcare.dj.models import ImageField
 
 class Profile(models.Model):
-    """
-    Class that contains details of a user's profile
-    """
-    pic = models.ImageField(upload_to = 'images/')
-    bio = models.TextField()
-    user = models.ForeignKey(User)
+        """
+        Class that contains profile details
+        """
+        bio = HTMLField()
+        dp = ImageField(blank = True)
+        user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
 
-    def __str__(self):
-            return self.name
 
-    def save_profile(self):
-            self.save()
+        def __str__(self):
+                return self.bio
+ 
 
-    def del_profile(self):
-            self.delete()
 
-class Image(models.Model):
-    """
-    Class that contains details of an image
-    """
-    image = models.ImageField(upload_to= 'images/')
+
 
