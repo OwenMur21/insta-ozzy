@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Profile, Image
+from .models import Profile, Image, Comments
 from django.contrib.auth.models import User
 
 class ProfileTestClass(TestCase):
@@ -96,6 +96,54 @@ class ImageTestClass(TestCase):
         this_img= self.image.get_image_by_id(self.image.profile_id)
         image = Image.objects.get(id=self.image.profile_id)
         self.assertTrue(this_img, image)
+
+class CommentsTestClass(TestCase):
+    """
+    Test Comments class and its functions
+    """
+    def setUp(self):
+        #creating a new user 
+        self.user = User.objects.create_user('test2')
+         #creating an new profile and saving it
+        self.profile = Profile(bio='This is my bio', dp='name.jpg', user =self.user)
+        self.profile.save_profile()
+        #creating an new image and saving it
+        self.image = Image(post='test.jpg',caption='Fun times with bae', posted_on='Monday', user =self.user, profile=self.profile)
+        self.image.save_img()
+        #creating a new comment and saving it
+        self.comm = Comments(comment='lol', posted_on='Monday', image=self.image, user =self.user)
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.comm, Comments))
+
+    def test_save_method(self):
+        """
+        Function to test that a comment is being saved
+        """
+        self.comm.save_comm()
+        feedback = Comments.objects.all()
+        self.assertTrue(len(feedback) > 0)
+
+    def test_delete_method(self):
+        """
+        Function to test that a comment can be deleted
+        """
+        self.comm.save_comm()
+        self.comm.del_comm()
+
+    def test_get_comment_by_image_id(self):
+        """
+        Function to test if you can get comments based on the image_id
+        """
+        self.comm.save_comm()
+        this_comm= self.comm.get_comments_by_image_id(self.comm.image_id)
+        comments = Comments.objects.get(id=self.comm.image_id)
+        self.assertTrue(this_comm, comments)
+
+
+       
+
+
        
 
 
