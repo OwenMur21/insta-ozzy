@@ -1,7 +1,24 @@
 {%extends 'base.html' %}
+{% load static %}
+
+
+{% block styles%}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="container">
-<h2>This</h2>
+{% for image in images %}
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<div class="well">
+<p>{{image.user.username}}</p>
+<br>
+<br>
+  <img src="{{image.post.url}}" class="img-responsive">
+  <p>{{image.caption}}</p>
+</div>
+</div>
+{% endfor%}
 </div>
 {% endblock %}

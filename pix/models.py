@@ -28,7 +28,7 @@ class Profile(models.Model):
 
         @classmethod
         def get_by_id(cls, id):
-                profile = Profile.objects.get(user = id)
+                profile = Profile.objects.get(user_id = id)
                 return profile
        
 class Image(models.Model):
@@ -40,6 +40,7 @@ class Image(models.Model):
         posted_on = models.DateTimeField(auto_now_add=True)
         user = models.ForeignKey(User, on_delete=models.CASCADE)
         profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+        
 
         def __str__(self):
                 return self.caption
@@ -47,7 +48,6 @@ class Image(models.Model):
         class Meta:
                 ordering = ['posted_on']
 
-        
         def save_img(self):
                 self.save()
 
@@ -90,11 +90,6 @@ class Comments(models.Model):
         def get_comments_by_image_id(cls, image):
                 comments = Comments.objects.get(image_id=image)
                 return comments
-
-
-
-
- 
 
 
 
