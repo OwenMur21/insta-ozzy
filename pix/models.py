@@ -25,6 +25,11 @@ class Profile(models.Model):
         def search_profile(cls, user):
                 profile = cls.objects.filter(user__username__icontains=user)
                 return profile
+
+        @classmethod
+        def get_by_id(cls, id):
+                profile = Profile.objects.get(user = id)
+                return profile
        
 class Image(models.Model):
         """
