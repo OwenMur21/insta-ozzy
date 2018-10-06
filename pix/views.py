@@ -67,9 +67,8 @@ def new_post(request):
     """
     Function that enables one to upload images
     """
-    
     current_user = request.user
-    profile = Profile.get_by_id(current_user.id)
+    profile = Profile.objects.all()
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
