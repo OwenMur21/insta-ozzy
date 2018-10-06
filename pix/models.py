@@ -42,6 +42,24 @@ class Image(models.Model):
         class Meta:
                 ordering = ['posted_on']
 
+        
+        def save_img(self):
+                self.save()
+
+        def del_img(self):
+                self.delete()
+
+        @classmethod
+        def get_images(cls):
+                images = Image.objects.all()
+                return images
+
+        @classmethod
+        def get_image_by_id(cls, profile):
+                image = Image.objects.get(profile_id=profile)
+                return image
+
+
 class Comments(models.Model):
         """
         Class that contains comments details
