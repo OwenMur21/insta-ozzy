@@ -74,6 +74,18 @@ class Comments(models.Model):
 
         class Meta:
                 ordering = ['posted_on']
+         
+        def save_comm(self):
+                self.save()
+
+        def del_comm(self):
+                self.delete()
+
+        @classmethod
+        def get_comments_by_image_id(cls, image):
+                comments = Comments.objects.get(image_id=image)
+                return comments
+
 
 
 
