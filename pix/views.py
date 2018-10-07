@@ -77,6 +77,7 @@ def new_post(request):
                 if form.is_valid():
                     image = form.save(commit=False)
                     image.profile = profile
+                    image.user = request.user
                     image.save()
                 return redirect('landing')
             else:
@@ -91,12 +92,12 @@ def like_post(request):
     return redirect('landing')
 
 @login_required(login_url='/accounts/login/')
-def profile(request, profile_id):
+def profile(request, user_id):
     """
     Function that enables one to see their profile
     """
     title = "Profile"
-    images = Image.get_image_by_id(id= profile_id)
+    images = Image.get_image_by_id(id= user_id)
     return render(request, 'profile/profile.html',{'title':title, "images":images})
 
 @login_required(login_url='/accounts/login/')

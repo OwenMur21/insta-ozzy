@@ -48,6 +48,7 @@ class Image(models.Model):
         posted_on = models.DateTimeField(auto_now_add=True)
         profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
         likes = models.ManyToManyField(User, related_name='likes', blank=True)
+        user = models.ForeignKey(User, on_delete=models.CASCADE)
     
         
         def __str__(self):
@@ -69,7 +70,7 @@ class Image(models.Model):
 
         @classmethod
         def get_image_by_id(cls, id):
-                image = Image.objects.filter(profile_id=id).all()
+                image = Image.objects.filter(user_id=id).all()
                 return image
 
 
