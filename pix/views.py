@@ -104,7 +104,8 @@ def profile(request, user_id):
     users = User.objects.get(id=user_id)
     follow = len(Follow.objects.followers(users))
     following = len(Follow.objects.following(users))
-    return render(request, 'profile/profile.html',{'title':title, "images":images,"follow":follow, "following":following,"profiles":profiles})
+    people = Follow.objects.following(request.user)
+    return render(request, 'profile/profile.html',{'title':title, "images":images,"follow":follow, "following":following,"profiles":profiles,"people":people})
 
 @login_required(login_url='/accounts/login/')
 def edit_profile(request):

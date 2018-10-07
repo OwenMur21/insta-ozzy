@@ -18,13 +18,24 @@
   <ul class="list-inline">
     
      <li class="list-inline-item" id="name">
-              <span class="font-weight-bold">{{profiles.username}}</span>
+        <span class="font-weight-bold">{{profiles.username}}</span>
           </li>
-           <li class="list-inline-item">
+{% if profiles.username == user.username %}
+     <li class="list-inline-item">
     <a href="/logout"><button>Log out</button></a>
     </li>
- 
+  {% else %}
+   {% if profiles in people %}
+     <li class="list-inline-item">
+    <a href="/unfollow/{{profiles.id}}"><button>Following</button></a>
+    </li>
+    {% else %}
+     <li class="list-inline-item">
+    <a href="/follow/{{profiles.id}}"><button>Follow</button></a>
+    </li>
+    {% endif %}
 </ul>
+{% endif %}
  <ul class="list-inline">
           <li class="list-inline-item">
               <span class="font-weight-bold">{{images|length}} </span> posts
@@ -36,8 +47,6 @@
               <span class="font-weight-bold">{{following}} </span> following
           </li>
 </ul>
-
-
 <hr>
  {% if images %}
 {% for image in images %}
