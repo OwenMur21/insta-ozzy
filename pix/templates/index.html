@@ -12,17 +12,13 @@
 {% for image in images %}
 <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
 <div class="well">
-<p>{{image.user.username}}</p>
+<p>{{image.profile.user.username}}</p>
 <br>
 <br>
   <img src="{{image.post.url}}" class="img-responsive">
   <p><strong>{{image.user.username}}</strong> {{image.caption}}</p>
   <p>{{image.posted_on}}</p>
 
-  <form action="{%url 'like_post'%}" method="post">
-{% csrf_token %}
-<button type="submit" name="image_id" value="{image.id}" class="btn btn-primary">Like</button>
-  </form>
 </div>
 </div>
 {% endfor%}

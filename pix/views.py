@@ -90,11 +90,28 @@ def like_post(request):
     image.likes.add(request.user)
     return redirect('landing')
 
+@login_required(login_url='/accounts/login/')
+def profile(request, profile_id):
+    """
+    Function that enables one to see their profile
+    """
+    title = "Profile"
+    images = Image.get_image_by_id(id= profile_id)
+    return render(request, 'profile/profile.html',{'title':title, "images":images})
 
-
-
-
-
-
-
-
+@login_required(login_url='/accounts/login/')
+def edit_profile(request):
+    """
+    Function that enables one to edit their profile information
+    """
+    user = request.user
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = user
+            profile.save()
+        return redirect('profile')
+    else:
+        form = ProfileForm()
+    return render(request, 'profile/edit-profile.html', {"form": form})

@@ -68,8 +68,8 @@ class Image(models.Model):
                 return images
 
         @classmethod
-        def get_image_by_id(cls, profile):
-                image = Image.objects.get(profile_id=profile)
+        def get_image_by_id(cls, id):
+                image = Image.objects.filter(profile_id=id).all()
                 return image
 
 

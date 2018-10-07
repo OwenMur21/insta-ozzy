@@ -1,15 +1,43 @@
 {%extends 'base.html' %}
+{% load static %}
+
+{% block styles%}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="container">
+   <div class="col-md-4" id="dp">
+        {% if image.profile.dp %}
+        <img src="{{image.profile.dp.cdn_url}}" alt="profile-photo" class="img-thumbnail rounded-circle prof">
+        {% else %}
+        <img src="/static/img/avatar.png" alt="avatar" class="img-circle">
+{% endif %}
+</div>
+ <div class="col-md-4" id="edit">
+    {% if user.is_authenticated %}
+    <p class="name">{{user.username}}</p>
+    <a href="/logout" id="editbtn"><button>Log out</button></a>
+    {% endif %}  
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<hr>
+ {% if images %}
 {% for image in images %}
-
-<p>{{image.user.username}}</p>
+<div class="col-md-4">
 <br>
 <br>
-  <img src="{{image.post.url}}" class="img-responsive">
-  <p>{{image.caption}}</p>
-
+<img src="{{image.post.url}}" class="img-responsive">
+</div>
 {% endfor%}
+ {% else %}
+<p>You have no posts yet</p>
+
+{% endif %}
 </div>
 {% endblock %}

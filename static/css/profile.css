@@ -1,0 +1,20 @@
+#dp{
+    margin-top: 30px;
+    margin-left: 111px;
+}
+.img-circle{
+    border: solid #ccc 2px;
+    height: 60px;
+}
+.name{
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: bolder
+   
+}
+#editbtn{
+    margin-left: -20px; 
+}
+button{
+    padding: 4px;
+}
