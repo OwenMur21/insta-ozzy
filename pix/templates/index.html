@@ -12,26 +12,40 @@
 {% for image in images %}
 <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
 <div class="well">
-<p>{{image.profile.user.username}}
+<p class='title'><img src="/static/img/avatar.png" alt="avatar" class="img-circle" id="each1">   {{image.user.username}}</p>
 <br>
 <br>
   <img src="{{image.post.url}}" class="img-responsive">
   <p><strong>{{image.user.username}}</strong> {{image.caption}}</p>
   <p>{{image.posted_on}}</p>
+  <hr>
 </div>
 </div>
 {% endfor%}
 
- <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.username}}</h3>
+ <h3> <img src="/static/img/avatar.png" alt="avatar" class="img-circle" id="each">     {{user.username}}</h3>
  <hr>
 <p class="text-muted"> Follow other users</p>
 {% for profile in profiles %}
 {% if user.username == profile.username%}
  {%else%}
-<a href="/user/{{profile.id}}" class="link"><strong class="list-inline">{{profile.username}} </strong>
+   <ul class="list-inline">
+    <li class="list-inline-item">
+<a href="/user/{{profile.id}}" class="others"><strong class="list-inline"><img src="/static/img/avatar.png" alt="avatar" class="img-circle" id="each"> {{profile.username}} </strong>
 </a>
+</li>
+ {% if profile in people %}
+    <li class="list-inline-item">
+ <a href="/unfollow/{{profile.id}}"><button class="btn btn-info btn-xs">Following</button></a>
+</li>
+ {% else %}
+     <li class="list-inline-item">
+ <a href="/follow/{{profile.id}}"><button class="btn btn-info btn-xs">Follow</button></a>
+</li>
  {% endif %}
-{% endfor%}
+</ul>
+ {% endif %}
+{% endfor %}
 </div>
 
 </div>

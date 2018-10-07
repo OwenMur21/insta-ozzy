@@ -9,3 +9,27 @@ img{
 h3{
     font-weight: bolder;
 }
+#each{
+    width: 40px;
+}
+.img-circle{
+    border: solid #ccc 2px;
+}
+.others{
+    margin-left: 50px;
+    color: black;
+
+}
+.others:hover{
+    color: black;
+    text-decoration: none
+}
+
+#each1{
+    width: 30px;
+}
+.title{
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-bottom: -20px;
+}

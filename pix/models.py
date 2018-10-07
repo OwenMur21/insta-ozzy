@@ -33,8 +33,8 @@ class Profile(models.Model):
 
         @classmethod
         def search_profile(cls, user):
-                profile = cls.objects.filter(user__username__icontains=user)
-                return profile
+                profiles = cls.objects.filter(user__username__icontains=user)
+                return profiles
 
         @classmethod
         def get_by_id(cls, id):

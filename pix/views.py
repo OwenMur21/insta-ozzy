@@ -63,8 +63,9 @@ def index(request):
     """
     images = Image.get_images().order_by('-posted_on')
     profiles = User.objects.all()
+    people = Follow.objects.following(request.user)
 
-    return render(request, 'index.html',{"images":images,"profiles":profiles})
+    return render(request, 'index.html',{"images":images,"profiles":profiles,"people":people})
 
 @login_required(login_url='/accounts/login/')
 def new_post(request):
@@ -136,3 +137,19 @@ def unfollow(request,user_id):
     follow = Follow.objects.remove_follower(request.user, other_user)
 
     return redirect('landing')
+
+@login_required(login_url='/accounts/login/')
+def search_profile(request):
+    """
+    Function that searches for profiles based on the usernames
+    """
+    if 'profile' in request.GET and request.GET["profile"]:
+        user = request.GET.get("profile")
+        searched_profiles = Profile.search_profile(user)
+        message = f"{user}"
+        
+        return render(request, 'search.html', {"message":message, "profiles":searched_profiles})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html', {"message":message})
