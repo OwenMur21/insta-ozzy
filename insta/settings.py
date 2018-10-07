@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'pix.apps.PixConfig',
     'bootstrap3',
      'tinymce',
+     'friendship',
 ]
 UPLOADCARE = {
     'pub_key': 'a73a6a485ca9f025b433',

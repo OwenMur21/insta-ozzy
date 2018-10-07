@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^likes/$', views.like_post, name='like_post'),
     url(r'^user/(\d+)$', views.profile, name='profile'),
     url(r'^profile/edit/', views.edit_profile, name='edit_profile'),
+    url(r'^follow/(?P<user_id>\d+)', views.follow, name='follow'),
 
 ]
 if settings.DEBUG:

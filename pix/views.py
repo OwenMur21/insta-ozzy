@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from .forms import ImageForm, ProfileForm
 from .models import Image, Profile, Comments
+from friendship.models import Friend, Follow, Block
 
 
 
@@ -61,8 +62,9 @@ def index(request):
     Function that renders the landing page
     """
     images = Image.get_images().order_by('-posted_on')
+    profiles = User.objects.all()
 
-    return render(request, 'index.html',{"images":images})
+    return render(request, 'index.html',{"images":images,"profiles":profiles})
 
 @login_required(login_url='/accounts/login/')
 def new_post(request):
@@ -97,22 +99,39 @@ def profile(request, user_id):
     Function that enables one to see their profile
     """
     title = "Profile"
-    images = Image.get_image_by_id(id= user_id)
-    return render(request, 'profile/profile.html',{'title':title, "images":images})
+    images = Image.get_image_by_id(id= user_id).order_by('-posted_on')
+    profiles = User.objects.get(id=user_id)
+    users = User.objects.get(id=user_id)
+    follow = len(Follow.objects.followers(users))
+    following = len(Follow.objects.following(users))
+    return render(request, 'profile/profile.html',{'title':title, "images":images,"follow":follow, "following":following,"profiles":profiles})
 
 @login_required(login_url='/accounts/login/')
 def edit_profile(request):
     """
     Function that enables one to edit their profile information
     """
-    user = request.user
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             profile = form.save(commit=False)
-            profile.user = user
+            profile.user = request.user
             profile.save()
         return redirect('profile')
     else:
         form = ProfileForm()
-    return render(request, 'profile/edit-profile.html', {"form": form})
+    return render(request, 'profile/edit-profile.html', {"form": form,})
+@login_required(login_url='/accounts/login/')
+def follow(request,user_id):
+    other_user = User.objects.get(id = user_id)
+    follow = Follow.objects.add_follower(request.user, other_user)
+
+    return redirect('landing')
+
+@login_required(login_url='/accounts/login/')
+def unfollow(request,user_id):
+    other_user = User.objects.get(id = user_id)
+
+    follow = Follow.objects.remove_follower(request.user, other_user)
+
+    return redirect('landing')

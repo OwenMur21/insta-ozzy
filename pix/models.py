@@ -23,6 +23,8 @@ class Profile(models.Model):
         def save_user_profile(sender, instance, **kwargs):
                 instance.profile.save()
 
+        post_save.connect(save_user_profile, sender=User)
+
         def save_profile(self):
                 self.save()
 
@@ -36,7 +38,7 @@ class Profile(models.Model):
 
         @classmethod
         def get_by_id(cls, id):
-                profile = Profile.objects.get(user = id)
+                profile = Profile.objects.get(id = id)
                 return profile
        
 class Image(models.Model):

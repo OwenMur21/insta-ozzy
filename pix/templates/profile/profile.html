@@ -15,17 +15,29 @@
         <img src="/static/img/avatar.png" alt="avatar" class="img-circle">
 {% endif %}
 </div>
- <div class="col-md-4" id="edit">
-    {% if user.is_authenticated %}
-    <p class="name">{{user.username}}</p>
-    <a href="/logout" id="editbtn"><button>Log out</button></a>
-    {% endif %}  
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
+  <ul class="list-inline">
+    
+     <li class="list-inline-item" id="name">
+              <span class="font-weight-bold">{{profiles.username}}</span>
+          </li>
+           <li class="list-inline-item">
+    <a href="/logout"><button>Log out</button></a>
+    </li>
+ 
+</ul>
+ <ul class="list-inline">
+          <li class="list-inline-item">
+              <span class="font-weight-bold">{{images|length}} </span> posts
+          </li>
+          <li class="list-inline-item">
+              <span class="font-weight-bold">{{follow}} </span> followers
+          </li>
+          <li class="list-inline-item">
+              <span class="font-weight-bold">{{following}} </span> following
+          </li>
+</ul>
+
+
 <hr>
  {% if images %}
 {% for image in images %}

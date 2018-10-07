@@ -12,15 +12,27 @@
 {% for image in images %}
 <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
 <div class="well">
-<p>{{image.profile.user.username}}</p>
+<p>{{image.profile.user.username}}
 <br>
 <br>
   <img src="{{image.post.url}}" class="img-responsive">
   <p><strong>{{image.user.username}}</strong> {{image.caption}}</p>
   <p>{{image.posted_on}}</p>
-
 </div>
 </div>
 {% endfor%}
+
+ <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.username}}</h3>
+ <hr>
+<p class="text-muted"> Follow other users</p>
+{% for profile in profiles %}
+{% if user.username == profile.username%}
+ {%else%}
+<a href="/user/{{profile.id}}" class="link"><strong class="list-inline">{{profile.username}} </strong>
+</a>
+ {% endif %}
+{% endfor%}
+</div>
+
 </div>
 {% endblock %}

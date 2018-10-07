@@ -6,8 +6,7 @@
     border: solid #ccc 2px;
     height: 60px;
 }
-.name{
-    margin-top: 30px;
+#name{
     font-size: 20px;
     font-weight: bolder
    
@@ -17,4 +16,8 @@
 }
 button{
     padding: 4px;
+}
+.list-inline{
+    margin-top: 20px;
+    font-weight: bolder;
 }
