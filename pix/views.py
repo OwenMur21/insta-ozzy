@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
-from .forms import ImageForm
+from .forms import ImageForm, ProfileForm
 from .models import Image, Profile, Comments
 
 
@@ -60,7 +60,9 @@ def index(request):
     """
     Function that renders the landing page
     """
-    return render(request, 'index.html')
+    images = Image.get_images().order_by('-posted_on')
+
+    return render(request, 'index.html',{"images":images})
 
 @login_required(login_url='/accounts/login/')
 def new_post(request):
@@ -73,12 +75,12 @@ def new_post(request):
         if form.is_valid():
             image = form.save(commit=False)
             image.user = current_user
-            image.profile = current_user
             image.save()
-        return redirect('landing')
 
+        return redirect('landing')
     else:
         form = ImageForm()
     return render(request, 'new_post.html', {"form": form})
+
 
 

@@ -1,0 +1,15 @@
+{%extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+{% for image in images %}
+
+<p>{{image.user.username}}</p>
+<br>
+<br>
+  <img src="{{image.post.url}}" class="img-responsive">
+  <p>{{image.caption}}</p>
+
+{% endfor%}
+</div>
+{% endblock %}

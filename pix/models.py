@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 import datetime as dt
 from django.db import models
 from tinymce.models import HTMLField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class Profile(models.Model):
@@ -10,10 +12,17 @@ class Profile(models.Model):
         """
         bio = HTMLField()
         dp = models.ImageField(upload_to = 'images/', blank=True)
-        user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+        user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-        def __str__(self):
-                return self.bio
+
+        @receiver(post_save, sender=User)
+        def create_user_profile(sender, instance, created, **kwargs):
+                if created:
+                        Profile.objects.create(user=instance)
+
+        @receiver(post_save, sender=User)
+        def save_user_profile(sender, instance, **kwargs):
+                instance.profile.save()
 
         def save_profile(self):
                 self.save()
@@ -28,7 +37,7 @@ class Profile(models.Model):
 
         @classmethod
         def get_by_id(cls, id):
-                profile = Profile.objects.get(user_id = id)
+                profile = Profile.objects.get(user = id)
                 return profile
        
 class Image(models.Model):
@@ -39,9 +48,7 @@ class Image(models.Model):
         caption = HTMLField()
         posted_on = models.DateTimeField(auto_now_add=True)
         user = models.ForeignKey(User, on_delete=models.CASCADE)
-        profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
         
-
         def __str__(self):
                 return self.caption
 
@@ -60,8 +67,8 @@ class Image(models.Model):
                 return images
 
         @classmethod
-        def get_image_by_id(cls, profile):
-                image = Image.objects.get(profile_id=profile)
+        def get_image_by_id(cls, user):
+                image = Image.objects.get(user_id=user)
                 return image
 
 
