@@ -14,7 +14,6 @@ class Profile(models.Model):
         dp = models.ImageField(upload_to = 'images/', blank=True)
         user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-
         @receiver(post_save, sender=User)
         def create_user_profile(sender, instance, created, **kwargs):
                 if created:
@@ -47,9 +46,9 @@ class Image(models.Model):
         post = models.ImageField(upload_to = 'images/', blank=True)
         caption = HTMLField()
         posted_on = models.DateTimeField(auto_now_add=True)
-        user = models.ForeignKey(User, on_delete=models.CASCADE)
-        likes = models.ManyToManyField(User, related_name='likes', blank=True)
         profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+        likes = models.ManyToManyField(User, related_name='likes', blank=True)
+    
         
         def __str__(self):
                 return self.caption
@@ -69,8 +68,8 @@ class Image(models.Model):
                 return images
 
         @classmethod
-        def get_image_by_id(cls, user):
-                image = Image.objects.get(user_id=user)
+        def get_image_by_id(cls, profile):
+                image = Image.objects.get(profile_id=profile)
                 return image
 
 

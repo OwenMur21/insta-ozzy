@@ -69,17 +69,18 @@ def new_post(request):
     """
     Function that enables one to upload images
     """
-    current_user = request.user
-    if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            image = form.save(commit=False)
-            image.user = current_user
-            image.save()
-
-        return redirect('landing')
-    else:
-        form = ImageForm()
+    profile = Profile.objects.all()
+    for profile in profile:
+        if profile.user.id == request.user.id:
+            if request.method == 'POST':
+                form = ImageForm(request.POST, request.FILES)
+                if form.is_valid():
+                    image = form.save(commit=False)
+                    image.profile = profile
+                    image.save()
+                return redirect('landing')
+            else:
+                form = ImageForm()
     return render(request, 'new_post.html', {"form": form})
 
 
