@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from django.http  import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http  import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import SignupForm
@@ -81,6 +81,19 @@ def new_post(request):
     else:
         form = ImageForm()
     return render(request, 'new_post.html', {"form": form})
+
+
+@login_required(login_url='/accounts/login/')
+def like_post(request):
+    image = get_object_or_404(Image, id=request.POST.get('image_id'))
+    image.likes.add(request.user)
+    return redirect('landing')
+
+
+
+
+
+
 
 
 

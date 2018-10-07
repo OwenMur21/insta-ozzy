@@ -5,4 +5,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('pix.urls')),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+
 ]

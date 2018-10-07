@@ -48,6 +48,8 @@ class Image(models.Model):
         caption = HTMLField()
         posted_on = models.DateTimeField(auto_now_add=True)
         user = models.ForeignKey(User, on_delete=models.CASCADE)
+        likes = models.ManyToManyField(User, related_name='likes', blank=True)
+        profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
         
         def __str__(self):
                 return self.caption
