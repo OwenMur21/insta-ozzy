@@ -1,7 +1,7 @@
 .well{
     position: absolute;
     left: 55%;
-    top: 25%;
+    top: 30%;
     transform: translateX(-50%) translateY(-50%);
     background-color: #ffffff;
     width: 350px;
@@ -41,7 +41,7 @@ img{
 .app{
     position: absolute;
     left: 55%;
-    top: 75%;
+    top: 72%;
     transform: translateX(-50%) translateY(-50%);
 
   }
