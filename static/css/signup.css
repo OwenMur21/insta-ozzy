@@ -31,12 +31,8 @@
 img{
     max-width: 330px;
 }
-.sin{
-    position: absolute;
-    left: 55%;
-    top: 65%;
-    transform: translateX(-50%) translateY(-50%);
-    text-align: center
+.forgot{
+    margin-top: 20px;
 }
 .app{
     position: absolute;
@@ -50,6 +46,7 @@ img{
     left: 55%;
     top: 80%;
     transform: translateX(-50%) translateY(-50%);
+    width: 350px;
   }
   .logs{
     max-width: 170px;;

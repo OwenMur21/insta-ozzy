@@ -39,6 +39,7 @@
     left: 50%;
     top: 65%;
     transform: translateX(-50%) translateY(-50%);
+    width: 350px;
   }
   img{
       max-width: 170px;;
