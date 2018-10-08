@@ -14,7 +14,7 @@
      <ul class="col-sm-3 col-md-3 col-xs-4 col-lg-4 nav navbar-nav" style="float:right;">
           {% if user.is_authenticated %}
         <li><a href="{%url 'newPost'%}"><img src="/static/img/explore.png" style="width:30px"></a></li>
-        <li><a href="/"><img src="/static/img/heart.png" style="width:30px"></a></li>
+        <li><a href="#"><img src="/static/img/heart.png" style="width:30px"></a></li>
         <li><a href="/user/{{user.id}}"><img src="/static/img/pro.png" style="width:30px"></a></li>
           {% endif %}
       </ul>

@@ -75,17 +75,17 @@ def new_post(request):
     """
     profile = Profile.objects.all()
     for profile in profile:
-        if profile.user.id == request.user.id:
-            if request.method == 'POST':
-                form = ImageForm(request.POST, request.FILES)
-                if form.is_valid():
-                    image = form.save(commit=False)
-                    image.profile = profile
-                    image.user = request.user
-                    image.save()
-                return redirect('landing')
-            else:
-                form = ImageForm()
+    
+        if request.method == 'POST':
+            form = ImageForm(request.POST, request.FILES)
+            if form.is_valid():
+                image = form.save(commit=False)
+                image.profile = profile
+                image.user = request.user
+                image.save()
+            return redirect('landing')
+        else:
+            form = ImageForm()
     return render(request, 'new_post.html', {"form": form})
 
 
@@ -102,12 +102,13 @@ def profile(request, user_id):
     """
     title = "Profile"
     images = Image.get_image_by_id(id= user_id).order_by('-posted_on')
+    comments = Comments.objects.all()
     profiles = User.objects.get(id=user_id)
     users = User.objects.get(id=user_id)
     follow = len(Follow.objects.followers(users))
     following = len(Follow.objects.following(users))
     people = Follow.objects.following(request.user)
-    return render(request, 'profile/profile.html',{'title':title, "images":images,"follow":follow, "following":following,"profiles":profiles,"people":people})
+    return render(request, 'profile/profile.html',{'title':title, "images":images,"follow":follow, "following":following,"profiles":profiles,"people":people,"comments":comments})
 
 @login_required(login_url='/accounts/login/')
 def edit_profile(request):
@@ -120,9 +121,8 @@ def edit_profile(request):
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             profile = form.save(commit=False)
-       
             profile.save()
-        return redirect('profile')
+        return redirect('landing')
     else:
         form = ProfileForm()
     return render(request, 'profile/edit-profile.html', {"form": form,})
