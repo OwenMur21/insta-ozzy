@@ -27,7 +27,7 @@ def signup(request):
             mail_subject = 'Activate your instagram account.'
             message = render_to_string('registration/acc_active_email.html', {
                 'user': user,
-                'domain': current_site.domain,
+                'domain': 'insta-ozzy.herokuapp.com',
                 'uid':urlsafe_base64_encode(force_bytes(user.pk)),
                 'token':account_activation_token.make_token(user),
             })
