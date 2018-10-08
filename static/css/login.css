@@ -37,7 +37,7 @@
   .download{
     position: absolute;
     left: 50%;
-    top: 65%;
+    top: 75%;
     transform: translateX(-50%) translateY(-50%);
     width: 350px;
   }
