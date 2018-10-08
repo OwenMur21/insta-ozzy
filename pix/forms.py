@@ -19,3 +19,9 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model = Image
         exclude = ['user', 'posted_on', 'profile']
+
+
+class CommentsForm(forms.ModelForm):
+    class Meta:
+        model = Comments
+        fields = [ 'comment' ]
