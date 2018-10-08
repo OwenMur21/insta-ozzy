@@ -7,13 +7,8 @@
     width: 350px;
 
 }
-
-.sin{
-    position: absolute;
-    left: 50%;
-    top: 58%;
-    transform: translateX(-50%) translateY(-50%);
-    text-align: center
+.forgot{
+    margin-top: 20px;
 }
 
 .insta{
@@ -42,7 +37,7 @@
   .download{
     position: absolute;
     left: 50%;
-    top: 75%;
+    top: 65%;
     transform: translateX(-50%) translateY(-50%);
   }
   img{
