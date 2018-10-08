@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^profile/edit/', views.edit_profile, name='edit_profile'),
     url(r'^follow/(\d+)$', views.follow, name='follow'),
     url(r'^unfollow/(\d+)$', views.unfollow, name='unfollow'),
-    url(r'^search/$', views.search_profile, name='search_profile'),
+    url(r'^search/$', views.search_user, name='search_profile'),
     url(r'^comment/(?P<image_id>\d+)', views.add_comment, name='comment'),
 
 ]

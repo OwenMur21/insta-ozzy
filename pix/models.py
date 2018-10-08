@@ -12,7 +12,7 @@ class Profile(models.Model):
         """
         bio = HTMLField()
         dp = models.ImageField(upload_to = 'images/', blank=True)
-        user = models.OneToOneField(User, on_delete=models.CASCADE)
+        user = models.OneToOneField(User, on_delete=models.CASCADE,null="True")
 
         @receiver(post_save, sender=User)
         def create_user_profile(sender, instance, created, **kwargs):
@@ -32,9 +32,9 @@ class Profile(models.Model):
                 self.delete()
 
         @classmethod
-        def search_profile(cls, user):
-                profiles = cls.objects.filter(user__username__icontains=user)
-                return profiles
+        def search_profile(cls, name):
+                profile = cls.objects.filter(user__username__icontains=name)
+                return profile
 
         @classmethod
         def get_by_id(cls, id):
@@ -50,7 +50,7 @@ class Image(models.Model):
         posted_on = models.DateTimeField(auto_now_add=True)
         profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
         likes = models.ManyToManyField(User, related_name='likes', blank=True)
-        user = models.ForeignKey(User, on_delete=models.CASCADE)
+        user = models.ForeignKey(User, on_delete=models.CASCADE,null="True")
     
         
         def __str__(self):
@@ -83,7 +83,7 @@ class Comments(models.Model):
         comment = HTMLField()
         posted_on = models.DateTimeField(auto_now=True)
         image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='comments')
-        user = models.ForeignKey(User, on_delete=models.CASCADE)
+        user = models.ForeignKey(User, on_delete=models.CASCADE,null="True")
 
         def __str__(self):
                 return self.comment

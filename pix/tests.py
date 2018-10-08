@@ -7,10 +7,9 @@ class ProfileTestClass(TestCase):
     Test profile class and its functions
     """
     def setUp(self):
-        #creating a new user and saving it
-        self.user = User.objects.create_user('test')
+      
         #creating an new profile
-        self.profile = Profile(bio='This is my bio', dp='name.jpg', user =self.user)
+        self.profile = Profile(bio='This is my bio', dp='name.jpg')
 
     def test_instance(self):
         self.assertTrue(isinstance(self.profile, Profile))

@@ -64,8 +64,9 @@ def index(request):
     images = Image.get_images().order_by('-posted_on')
     profiles = User.objects.all()
     people = Follow.objects.following(request.user)
+    comments = Comments.objects.all()
 
-    return render(request, 'index.html',{"images":images,"profiles":profiles,"people":people})
+    return render(request, 'index.html',{"images":images,"profiles":profiles,"people":people, "comments":comments})
 
 @login_required(login_url='/accounts/login/')
 def new_post(request):
@@ -113,11 +114,13 @@ def edit_profile(request):
     """
     Function that enables one to edit their profile information
     """
+    current_user = request.user
+    profile = Profile.objects.get(user=request.user)
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             profile = form.save(commit=False)
-            profile.user = request.user
+       
             profile.save()
         return redirect('profile')
     else:
@@ -139,17 +142,19 @@ def unfollow(request,user_id):
     return redirect('landing')
 
 @login_required(login_url='/accounts/login/')
-def search_profile(request):
+def search_user(request):
     """
     Function that searches for profiles based on the usernames
     """
-    if 'profile' in request.GET and request.GET["profile"]:
-        user = request.GET.get("profile")
-        searched_profiles = Profile.search_profile(user)
-        message = f"{user}"
-        
-        return render(request, 'search.html', {"message":message, "profiles":searched_profiles})
-
+    if 'username' in request.GET and request.GET["username"]:
+        name = request.GET.get("username")
+        searched_profiles = User.objects.filter(username__icontains=name)
+        message = f"{name}"
+        profiles = User.objects.all()
+        people = Follow.objects.following(request.user)
+        print(profiles)
+        return render(request, 'search.html', {"message":message, "usernames":searched_profiles, "profiles":profiles,})
+ 
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html', {"message":message})

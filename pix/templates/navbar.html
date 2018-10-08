@@ -6,9 +6,9 @@
         <li class="line"><a href="/"></a></li>
         <li><a href="/" class="insta">Instagram</a></li>
       </ul>
-        <form class="col-sm-4 col-md-4 col-xs-4 col-lg-4 navbar-form" role="search" action="{% url 'search_profile' %}">
+        <form class="col-sm-4 col-md-4 col-xs-4 col-lg-4 navbar-form" role="search" action="{% url 'search_profile' %}" method="GET">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="&#xF002;  Search" name="image" style="font-family:FontAwesome;text-align:center;">
+            <input type="text" class="form-control" placeholder="&#xF002;  Search" name="username" style="font-family:FontAwesome;text-align:center;">
           </div>
         </form>
      <ul class="col-sm-3 col-md-3 col-xs-4 col-lg-4 nav navbar-nav" style="float:right;">

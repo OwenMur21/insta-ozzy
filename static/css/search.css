@@ -1,0 +1,10 @@
+.others{
+    margin-left: 50px;
+    color: black;
+    font-size: 24px;
+
+}
+.others:hover{
+    color: black;
+    text-decoration: none
+}

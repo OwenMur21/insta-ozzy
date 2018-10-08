@@ -17,8 +17,35 @@
 <br>
   <img src="{{image.post.url}}" class="img-responsive">
   <p><strong>{{image.user.username}}</strong> {{image.caption}}</p>
-  <p>{{image.posted_on}}</p>
-  <hr>
+  <p class="text-muted">{{image.posted_on|timesince}}</p>
+<hr>
+<div class="demcoms">
+  <h5 class="display"><strong>Comments</strong> 
+                <a class="view-more"></a>
+                          {% for comment in comments %}
+                           {% if comment.image_id == image.id %}
+                            <li class="comments"> {{ comment.user.username }} said:
+                              <span class="comment">{{ comment.comment }}</span>
+                            </li>
+                             {% else %}
+{% endif %}
+                          {% endfor %}
+                        
+                     <br>
+                     <br>
+                            <div class="comment-input-wrapper">
+                                <form action="{% url 'comment' image_id=image.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input class="add-comment" name="comment" id="comment{{image.id}}" type="text" placeholder="Comment on this image....">
+                                </form>
+                            </div>
+                            <div class="hidden-data {{ image.pk }}" style="display: none;">
+                              <span class="image-pk">{{ image.pk }}</span>
+                            </div>
+                     
+                      
+            </h5>
+ </div>
 </div>
 </div>
 {% endfor%}

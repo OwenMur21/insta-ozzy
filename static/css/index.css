@@ -18,6 +18,7 @@ h3{
 .others{
     margin-left: 50px;
     color: black;
+   
 
 }
 .others:hover{
@@ -32,4 +33,11 @@ h3{
     margin-top: 20px;
     margin-left: 10px;
     margin-bottom: -20px;
+}
+
+.comments{
+    list-style-type: none;
+}
+.demcoms{
+    margin-left: 10px;
 }
