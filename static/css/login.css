@@ -11,7 +11,7 @@
 .sin{
     position: absolute;
     left: 50%;
-    top: 55%;
+    top: 58%;
     transform: translateX(-50%) translateY(-50%);
     text-align: center
 }
@@ -35,7 +35,7 @@
   .app{
     position: absolute;
     left: 50%;
-    top: 70%;
+    top: 67%;
     transform: translateX(-50%) translateY(-50%);
 
   }
