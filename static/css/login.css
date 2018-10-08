@@ -28,11 +28,7 @@
   }
 
   .app{
-    position: absolute;
-    left: 50%;
-    top: 67%;
-    transform: translateX(-50%) translateY(-50%);
-
+    margin-bottom: 10px;
   }
   .download{
     position: absolute;
@@ -40,6 +36,7 @@
     top: 75%;
     transform: translateX(-50%) translateY(-50%);
     width: 350px;
+    margin-top: 20px;
   }
   img{
       max-width: 170px;;
