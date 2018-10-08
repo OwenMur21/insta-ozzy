@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
-from .forms import ImageForm, ProfileForm
+from .forms import ImageForm, ProfileForm, CommentsForm
 from .models import Image, Profile, Comments
 from friendship.models import Friend, Follow, Block
 
@@ -153,3 +153,15 @@ def search_profile(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html', {"message":message})
+
+@login_required(login_url='/accounts/login/')
+def add_comment(request, image_id):
+    images = get_object_or_404(Image, pk=image_id)
+    if request.method == 'POST':
+        form = CommentsForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.image = images
+            comment.save()
+    return redirect('landing')
