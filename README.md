@@ -13,6 +13,15 @@ To access this app on your local machine:
  1) Clone the repo
  2) Create a virtual environment then pip install requirements.txt
  3) On your terminal route to the root folder then run: python manage.py runserver
+ 4) Create database - on terminal, run `psql`
+ 5) Create a .env file and add the following:
+    i) SECRET_KEY = `<Secret_Key>`
+   ii) DB_NAME = `<your_db_name`
+  iii) DB_PASSWORD = `your_password`
+   iv) DEBUG = `True`
+   
+ 6) Run Migrations `python3.6 manage.py makemigrations <name of the app>` then `python3.6 manage.py migrate`
+ 7) On terminal run `python3.6 manage.py runserver`
 
 
 ## Features
@@ -28,7 +37,7 @@ There are no known bugs.
 
 ### Technologies used
 
-This application was made with Python version 3.6 using the django framework. The templates were made using html and was styled using css and bootstrap 3. The database used was postgresql, it was edited using visual studio code and deployed to heroku.
+This application was made with Python version 3.6 using the django framework. The templates were made using html and was styled using css and bootstrap 3. The database used was postgresql, it was edited using visual studio code and deployed to heroku. 
 
 ## Support and Contact details
 Incase of additions or if you run into any issues, my email address is: owenmuriithi@gmail.com
