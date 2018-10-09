@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^unfollow/(\d+)$', views.unfollow, name='unfollow'),
     url(r'^search/$', views.search_user, name='search_profile'),
     url(r'^comment/(?P<image_id>\d+)', views.add_comment, name='comment'),
+    url(r'^like/(?P<image_id>\d+)', views.like, name='like'),
 
 ]
 if settings.DEBUG:

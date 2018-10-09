@@ -49,7 +49,6 @@ class Image(models.Model):
         caption = HTMLField()
         posted_on = models.DateTimeField(auto_now_add=True)
         profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-        likes = models.ManyToManyField(User, related_name='likes', blank=True)
         user = models.ForeignKey(User, on_delete=models.CASCADE,null="True")
     
         
@@ -69,6 +68,11 @@ class Image(models.Model):
         def get_images(cls):
                 images = Image.objects.all()
                 return images
+
+        @property
+        def count_likes(self):
+                likes = self.likes.count()
+                return likes
 
         @classmethod
         def get_image_by_id(cls, id):
@@ -101,6 +105,16 @@ class Comments(models.Model):
         def get_comments_by_image_id(cls, image):
                 comments = Comments.objects.get(image_id=image)
                 return comments
+
+class Likes(models.Model):
+        user_like = models.ForeignKey(User, on_delete=models.CASCADE, related_name='likes')
+        liked_post =models.ForeignKey(Image, on_delete=models.CASCADE, related_name='likes')
+
+        def save_like(self):
+                self.save()
+
+        def __str__(self):
+                return self.user_like
 
 
 

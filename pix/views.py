@@ -11,7 +11,7 @@ from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from .forms import ImageForm, ProfileForm, CommentsForm
-from .models import Image, Profile, Comments
+from .models import Image, Profile, Comments, Likes
 from friendship.models import Friend, Follow, Block
 
 
@@ -65,8 +65,9 @@ def index(request):
     profiles = User.objects.all()
     people = Follow.objects.following(request.user)
     comments = Comments.objects.all()
+    likes = Likes.objects.all()
 
-    return render(request, 'index.html',{"images":images,"profiles":profiles,"people":people, "comments":comments})
+    return render(request, 'index.html',{"images":images,"profiles":profiles,"people":people, "comments":comments,"likes":likes})
 
 @login_required(login_url='/accounts/login/')
 def new_post(request):
@@ -170,3 +171,11 @@ def add_comment(request, image_id):
             comment.image = images
             comment.save()
     return redirect('landing')
+
+def like(request, image_id):
+   current_user = request.user
+   liked_post = Image.objects.get(id=image_id)
+   new_like, created = Likes.objects.get_or_create(user_like=current_user, liked_post=liked_post)
+   new_like.save()
+
+   return redirect('landing')
