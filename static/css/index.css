@@ -41,3 +41,8 @@ h3{
 .demcoms{
     margin-left: 10px;
 }
+.list{
+    overflow: scroll;
+    width: 300px;
+    height: 255px;
+}
