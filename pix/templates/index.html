@@ -19,7 +19,7 @@
   <img src="{{image.post.url}}" class="img-responsive">
   <p><strong>{{image.user.username}}</strong> {{image.caption}}</p>
   <p><a href=" {% url 'like' image_id=image.id %}" >
-                                                   <i class="fa fa-heart-o" style="color: black !important;font-size: 30px;opacity: 0.7;" aria-hidden="true"></i></a>{{image.count_likes}} likes</p>
+                                                   <i class="fa fa-heart-o" style="font-size:28px; color:black;" aria-hidden="true"></i></a>&nbsp;&nbsp;{{image.count_likes}}   likes</p>
   <p class="text-muted">{{image.posted_on|timesince}}</p>
 <hr>
 <div class="demcoms">
