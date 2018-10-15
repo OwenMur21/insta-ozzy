@@ -15,20 +15,20 @@ To access this app on your local machine:
  3) On your terminal route to the root folder then run: python manage.py runserver
  4) Create database - on terminal, run `psql`
  5) Create a .env file and add the following:
- i) SECRET_KEY = `<Secret_Key>`
-ii) DB_NAME = `<your_db_name`
-iii) DB_PASSWORD = `your_password`
-iv) DEBUG = `True`
+ - SECRET_KEY = `<Secret_Key>`
+ - DB_NAME = `<your_db_name`
+ - DB_PASSWORD = `your_password`
+ - DEBUG = `True`
    
  6) Run Migrations `python3.6 manage.py makemigrations <name of the app>` then `python3.6 manage.py migrate`
  7) On terminal run `python3.6 manage.py runserver`
 
 
 ## Features
- 1.Users can upload images they like on their timeline
- 2.Users can view their profiles
- 3.User can comment on each image
- 4.Users can follow each other
+ 1) Users can upload images they like on their timeline
+ 2) Users can view their profiles
+ 3) User can comment on each image
+ 4) Users can follow each other
 
 
 ### Known bugs
