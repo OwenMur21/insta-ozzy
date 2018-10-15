@@ -15,10 +15,10 @@ To access this app on your local machine:
  3) On your terminal route to the root folder then run: python manage.py runserver
  4) Create database - on terminal, run `psql`
  5) Create a .env file and add the following:
-    i) SECRET_KEY = `<Secret_Key>`
-   ii) DB_NAME = `<your_db_name`
-  iii) DB_PASSWORD = `your_password`
-   iv) DEBUG = `True`
+ i) SECRET_KEY = `<Secret_Key>`
+ii) DB_NAME = `<your_db_name`
+iii) DB_PASSWORD = `your_password`
+iv) DEBUG = `True`
    
  6) Run Migrations `python3.6 manage.py makemigrations <name of the app>` then `python3.6 manage.py migrate`
  7) On terminal run `python3.6 manage.py runserver`
